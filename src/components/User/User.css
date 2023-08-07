@@ -1,0 +1,18 @@
+.card {
+    margin: 16px auto;
+    max-width: 600px;
+    background-color: rgb(251, 255, 218);
+    box-shadow: rgba(100, 100, 111, 0.2) 4px 8px 20px 4px;
+    border-radius: 10px;
+}
+
+.button {
+    margin: 16px auto;
+    background-color: rgb(245, 255, 155);
+    border-radius: 4px;
+}
+
+.button:hover {
+    background-color: rgb(238, 255, 85);
+    cursor: pointer;
+}
