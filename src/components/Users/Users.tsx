@@ -3,6 +3,7 @@ import User from '../User/User';
 
 export interface UserInterface {
     id: number;
+    name: string;
     username: string;
     email: string;
     address: {

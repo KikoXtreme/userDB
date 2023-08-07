@@ -1,6 +1,6 @@
 .card {
     margin: 16px auto;
-    max-width: 600px;
+    max-width: 700px;
     background-color: rgb(251, 255, 218);
     box-shadow: rgba(100, 100, 111, 0.2) 4px 8px 20px 4px;
     border-radius: 10px;
@@ -15,4 +15,12 @@
 .button:hover {
     background-color: rgb(238, 255, 85);
     cursor: pointer;
+}
+
+.postcard {
+    margin: 16px auto;
+    max-width: 600px;
+    background-color: rgb(250, 255, 192);
+    box-shadow: rgba(100, 100, 111, 0.2) 4px 8px 20px 4px;
+    border-radius: 10px;
 }

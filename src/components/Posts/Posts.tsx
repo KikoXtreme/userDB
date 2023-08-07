@@ -1,18 +1,18 @@
-// import { UserInterface } from "../Users/Users";
+import { IPosts } from "../User/User";
 
-// interface Props {
-//     user: UserInterface;
-// }
+interface PostProps {
+    post: IPosts;
+}
 
-const Posts = ({ post }: any) => {
+const Posts = ({ post }: PostProps) => {
     const { title, body } = post;
 
     console.log('title', title);
     console.log('body', body);
 
     return (
-        <div className="card">
-            <p>{title}</p>
+        <div className="postcard">
+            <h4>{title}</h4>
             <p>{body}</p>
         </div>
     )
