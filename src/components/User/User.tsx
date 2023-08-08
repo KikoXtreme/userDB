@@ -81,7 +81,7 @@ const User = ({ user }: Props) => {
                 {showPosts ? "Hide user's posts" : "Get user's posts"}
             </button>
             {posts && posts.map(post => (
-                <Posts post={post} />
+                <Posts key={post.id} post={post} />
             ))}
         </div>
     );
