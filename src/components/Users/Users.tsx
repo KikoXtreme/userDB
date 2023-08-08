@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import User from '../User/User';
 import { UserInterface } from '../../interfaces/interfaces';
+import { dispatch } from '../../store';
+import { listUsers } from '../../store/reducers/users';
 
 const Users = () => {
     const [users, setUsers] = useState<UserInterface[]>([]);
@@ -23,6 +25,7 @@ const Users = () => {
 
         fetchUsers();
     }, []);
+    dispatch(listUsers(users));
 
     return (
         <div>

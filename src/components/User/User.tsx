@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./User.css"
 import Posts from "../Posts/Posts";
 import { IPosts, Props } from "../../interfaces/interfaces";
+import { useSelector } from "../../store";
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
@@ -18,12 +19,15 @@ const User = ({ user }: Props) => {
     const [suite, setSuite] = useState(address.suite);
     const [city, setCity] = useState(address.city);
 
+    const { users } = useSelector((state) => state.users);
+    console.log('users', users);
+
     const getUsersPosts = async (id: number) => {
-        //     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
-        // .then(res => res.json())
-        // .then(data => {
-        //     setPosts(data);
-        // });
+        // fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setPosts(data);
+        //     });
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
             const data = await response.json();
