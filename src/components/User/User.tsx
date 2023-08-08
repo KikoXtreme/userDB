@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./User.css"
 import Posts from "../Posts/Posts";
 import { IPosts, Props } from "../../interfaces/interfaces";
-import { useSelector } from "../../store";
+import { dispatch, useSelector } from "../../store";
+import { listUsers } from "../../store/reducers/users";
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
@@ -41,6 +42,64 @@ const User = ({ user }: Props) => {
         setShowPosts(prevShowPosts => !prevShowPosts);
     };
 
+    // const addPropertyToUser = () => {
+    //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+    //         method: 'PUT',
+    //         body: JSON.stringify({
+    //             id: id,
+    //             name: name,
+    //             username: username,
+    //             email: email,
+    //             address: {
+    //                 street: address.street,
+    //                 suite: address.suite,
+    //                 city: address.city,
+    //             },
+    //             phone: phone,
+    //             website: website,
+    //             posts: {
+    //                 title: 'foooooo',
+    //                 body: 'barrrrr',
+    //             },
+    //         }),
+    //         headers: {
+    //             'Content-type': 'application/json; charset=UTF-8',
+    //         },
+    //     })
+    //         .then((response) => response.json())
+    //         .then((json) => console.log(json));
+    // }
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                id: id,
+                name: nameOfTheUser,
+                username: username,
+                email: email,
+                address: {
+                    street: address.street,
+                    suite: address.suite,
+                    city: address.city,
+                },
+                phone: phone,
+                website: website,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((updatedData) => {
+                console.log('Updated data:', updatedData);
+                dispatch(listUsers(updatedData));
+                // dispatch(updateUser(updatedData)); // Dispatch the action only for the updated user
+                // setNameOfTheUser(updatedData.name);
+            });
+    }
+
     return (
         <div className="card">
             <button className="collapsible-button" onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -71,12 +130,13 @@ const User = ({ user }: Props) => {
 
                     <label htmlFor="website">Website:</label>
                     <input type="text" value={webSite} name="website" onChange={(e) => setWebSite(e.target.value)} />
-                    {/* <button type="submit">Submit</button> */}
+                    <button className="submit-button" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             )}
             <button className="button" onClick={() => {
                 showPosts ? setPosts([]) : getUsersPosts(id)
                 togglePosts();
+                // addPropertyToUser();
             }}>
                 {showPosts ? "Hide user's posts" : "Get user's posts"}
             </button>

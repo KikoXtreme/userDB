@@ -39,6 +39,21 @@
     background-color: #0056b3;
 }
 
+.submit-button {
+    background-color: #6f00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 16px;
+}
+
+.submit-button:hover {
+    background-color: #540069;
+}
+
+
 .collapsible-button {
     background-color: #1ac400;
     color: #ffffff;
