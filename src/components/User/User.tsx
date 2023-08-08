@@ -1,22 +1,14 @@
 import { useState } from "react";
-import { UserInterface } from "../Users/Users";
 import "./User.css"
 import Posts from "../Posts/Posts";
-
-interface Props {
-    user: UserInterface;
-}
-
-export interface IPosts {
-    title: string;
-    body: string;
-}
+import { IPosts, Props } from "../../interfaces/interfaces";
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
     const [posts, setPosts] = useState<IPosts[]>([]);
     const [showPosts, setShowPosts] = useState(false);
 
+    const [nameOfTheUser, setNameOfTheUser] = useState(name);
     const [phoneNumber, setPhoneNumber] = useState(phone);
     const [webSite, setWebSite] = useState(website);
     const [userName, setUserName] = useState(username);
@@ -39,8 +31,6 @@ const User = ({ user }: Props) => {
             console.error('Error fetching user posts:', error);
         }
     }
-    // console.log(user.id);
-    // console.log('posts: ', posts);
 
     const togglePosts = () => {
         setShowPosts(prevShowPosts => !prevShowPosts);
@@ -48,10 +38,12 @@ const User = ({ user }: Props) => {
 
     return (
         <div className="card">
-            <h2>{name}</h2>
             <form>
-                <label htmlFor="name">Username:</label>
-                <input type="text" value={userName} name="name" onChange={(e) => setUserName(e.target.value)} />
+                <label htmlFor="name">Name:</label>
+                <input type="text" value={nameOfTheUser} name="name" onChange={(e) => setNameOfTheUser(e.target.value)} />
+
+                <label htmlFor="username">Username:</label>
+                <input type="text" value={userName} name="username" onChange={(e) => setUserName(e.target.value)} />
 
                 <label htmlFor="email">Email:</label>
                 <input type="text" value={userEmail} name="email" onChange={(e) => setUserEmail(e.target.value)} />
@@ -82,7 +74,7 @@ const User = ({ user }: Props) => {
                 <Posts post={post} />
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default User;

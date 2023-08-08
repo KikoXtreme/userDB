@@ -1,19 +1,6 @@
 import { useEffect, useState } from 'react';
 import User from '../User/User';
-
-export interface UserInterface {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-    address: {
-        street: string;
-        suite: string;
-        city: string;
-    };
-    phone: string;
-    website: string;
-}
+import { UserInterface } from '../../interfaces/interfaces';
 
 const Users = () => {
     const [users, setUsers] = useState<UserInterface[]>([]);
@@ -37,14 +24,13 @@ const Users = () => {
         fetchUsers();
     }, []);
 
-    console.log(users);
     return (
         <div>
             {users!.map(user => (
                 <User key={user.id} user={user} />
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default Users;
