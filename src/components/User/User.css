@@ -24,17 +24,34 @@
     margin-bottom: 8px;
 }
 
-.card button {
+.button {
     background-color: #007bff;
     color: #ffffff;
     border: none;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
+    margin: 0 16px;
+    width: 140px;
 }
 
-.card button:hover {
+.button:hover {
     background-color: #0056b3;
+}
+
+.collapsible-button {
+    background-color: #1ac400;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 16px;
+    width: 140px;
+}
+
+.collapsible-button:hover {
+    background-color: #138f00;
 }
 
 .postcard {
