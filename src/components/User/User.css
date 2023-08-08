@@ -1,25 +1,49 @@
 .card {
-    margin: 16px auto;
-    max-width: 700px;
-    background-color: rgb(251, 255, 218);
-    box-shadow: rgba(100, 100, 111, 0.2) 4px 8px 20px 4px;
+    background-color: #ffffff;
     border-radius: 10px;
-}
-
-.button {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
     margin: 16px auto;
-    background-color: rgb(245, 255, 155);
-    border-radius: 4px;
 }
 
-.button:hover {
-    background-color: rgb(238, 255, 85);
+.card h2 {
+    margin-top: 0;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.card input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.card button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #0056b3;
 }
 
 .postcard {
     margin: 16px auto;
-    max-width: 600px;
+    max-width: 550px;
     background-color: rgb(250, 255, 192);
     box-shadow: rgba(100, 100, 111, 0.2) 4px 8px 20px 4px;
     border-radius: 10px;

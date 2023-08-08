@@ -20,6 +20,10 @@ const User = ({ user }: Props) => {
     const [phoneNumber, setPhoneNumber] = useState(phone);
     const [webSite, setWebSite] = useState(website);
     const [userName, setUserName] = useState(username);
+    const [userEmail, setUserEmail] = useState(email);
+    const [street, setStreet] = useState(address.street);
+    const [suite, setSuite] = useState(address.suite);
+    const [city, setCity] = useState(address.city);
 
     const getUsersPosts = async (id: number) => {
         //     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
@@ -44,14 +48,30 @@ const User = ({ user }: Props) => {
 
     return (
         <div className="card">
-            <h3>{name}</h3>
-            <span>Username: </span><input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
-            <p>Email: {email}</p>
-            <p>Street: {address.street}</p>
-            <p>Suite: {address.suite}</p>
-            <p>City: {address.city}</p>
-            <span>Phone: </span><input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-            <span>Website: </span><input type="text" value={webSite} onChange={(e) => setWebSite(e.target.value)} />
+            <h2>{name}</h2>
+            <form>
+                <label htmlFor="name">Username:</label>
+                <input type="text" value={userName} name="name" onChange={(e) => setUserName(e.target.value)} />
+
+                <label htmlFor="email">Email:</label>
+                <input type="text" value={userEmail} name="email" onChange={(e) => setUserEmail(e.target.value)} />
+
+                <label htmlFor="street">Street:</label>
+                <input type="text" value={street} name="street" onChange={(e) => setStreet(e.target.value)} />
+
+                <label htmlFor="suite">Suite:</label>
+                <input type="text" value={suite} name="suite" onChange={(e) => setSuite(e.target.value)} />
+
+                <label htmlFor="city">City:</label>
+                <input type="text" value={city} name="city" onChange={(e) => setCity(e.target.value)} />
+
+                <label htmlFor="phone">Phone:</label>
+                <input type="text" value={phoneNumber} name="phone" onChange={(e) => setPhoneNumber(e.target.value)} />
+
+                <label htmlFor="website">Website:</label>
+                <input type="text" value={webSite} name="website" onChange={(e) => setWebSite(e.target.value)} />
+                {/* <button type="submit">Submit</button> */}
+            </form>
             <button className="button" onClick={() => {
                 showPosts ? setPosts([]) : getUsersPosts(id)
                 togglePosts();
