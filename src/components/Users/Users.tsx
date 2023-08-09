@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import User from '../User/User';
-import { UserInterface } from '../../interfaces/interfaces';
-import { dispatch } from '../../store';
+// import { UserInterface } from '../../interfaces/interfaces';
+import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
+import { UserInterface } from '../../interfaces/interfaces';
 
 const Users = () => {
-    const [users, setUsers] = useState<UserInterface[]>([]);
+    // const [users, setUsers] = useState<UserInterface[]>([]);
 
     useEffect(() => {
         // fetch('https://jsonplaceholder.typicode.com/users')
@@ -17,7 +18,8 @@ const Users = () => {
             try {
                 const response = await fetch('https://jsonplaceholder.typicode.com/users');
                 const data = await response.json();
-                setUsers(data);
+                // setUsers(data);
+                dispatch(listUsers(data));
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
@@ -25,7 +27,9 @@ const Users = () => {
 
         fetchUsers();
     }, []);
-    dispatch(listUsers(users));
+
+    const { users } = useSelector((state) => state.users) as { users: UserInterface[] };
+
 
     return (
         <div>

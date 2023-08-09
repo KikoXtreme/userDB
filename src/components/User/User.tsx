@@ -24,12 +24,12 @@ const User = ({ user }: Props) => {
     const { users } = useSelector((state) => state.users);
     console.log('users', users);
 
+    // fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setPosts(data);
+    //     });
     const getUsersPosts = async (id: number) => {
-        // fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setPosts(data);
-        //     });
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
             const data = await response.json();
@@ -101,7 +101,6 @@ const User = ({ user }: Props) => {
             });
     }
 
-    console.log('nameOfTheUser', nameOfTheUser);
     return (
         <div className="card">
             <button className="collapsible-button" onClick={() => setIsCollapsed(!isCollapsed)}>

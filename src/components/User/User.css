@@ -41,7 +41,7 @@
 }
 
 .submit-button {
-    background-color: rgb(229, 229, 229);
+    background-color: rgb(234, 234, 234);
     color: #000000;
     border: 1px solid black;
     border-radius: 5px;
@@ -51,7 +51,7 @@
 }
 
 .submit-button:hover {
-    background-color: rgb(174, 174, 174);
+    background-color: rgb(194, 194, 194);
 }
 
 
