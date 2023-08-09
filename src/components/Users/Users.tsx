@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import User from '../User/User';
-// import { UserInterface } from '../../interfaces/interfaces';
 import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
 import { UserInterface } from '../../interfaces/interfaces';
@@ -30,10 +29,9 @@ const Users = () => {
 
     const { users } = useSelector((state) => state.users) as { users: UserInterface[] };
 
-
     return (
         <div>
-            {users!.map(user => (
+            {users.map(user => (
                 <User key={user.id} user={user} />
             ))}
         </div>

@@ -9,6 +9,7 @@ import { PostProps, UserInterface } from '../../interfaces/interfaces';
 const initialState = {
     error: null,
     users: [],
+    user: {},
     posts: [],
 };
 
@@ -23,6 +24,10 @@ const usersSlice = createSlice({
         // List Users
         listUsersSuccess(state, action) {
             state.users = action.payload;
+        },
+        // List One User
+        listUserSuccess(state, action) {
+            state.user = action.payload;
         },
         // List Posts
         listPostsSuccess(state, action) {
@@ -39,6 +44,16 @@ export function listUsers(users: UserInterface[]) {
     return async () => {
         try {
             dispatch(usersSlice.actions.listUsersSuccess(users));
+        } catch (error) {
+            dispatch(usersSlice.actions.hasError(error));
+        }
+    };
+}
+
+export function listUser(user: UserInterface) {
+    return async () => {
+        try {
+            dispatch(usersSlice.actions.listUserSuccess(user));
         } catch (error) {
             dispatch(usersSlice.actions.hasError(error));
         }

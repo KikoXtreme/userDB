@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./User.css"
 import Posts from "../Posts/Posts";
-import { IPosts, Props } from "../../interfaces/interfaces";
+import { IPosts, Props, UserInterface } from "../../interfaces/interfaces";
 import { dispatch, useSelector } from "../../store";
-import { listPosts, listUsers } from "../../store/reducers/users";
+import { listPosts, listUser, listUsers } from "../../store/reducers/users";
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
@@ -20,9 +20,6 @@ const User = ({ user }: Props) => {
     const [street, setStreet] = useState(address.street);
     const [suite, setSuite] = useState(address.suite);
     const [city, setCity] = useState(address.city);
-
-    const { users } = useSelector((state) => state.users);
-    console.log('users', users);
 
     // fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
     //     .then(res => res.json())
@@ -72,6 +69,8 @@ const User = ({ user }: Props) => {
     //         .then((json) => console.log(json));
     // }
 
+    const { users } = useSelector((state) => state.users) as { users: UserInterface[] };
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
@@ -79,15 +78,15 @@ const User = ({ user }: Props) => {
             body: JSON.stringify({
                 id: id,
                 name: nameOfTheUser,
-                username: username,
-                email: email,
+                username: userName,
+                email: userEmail,
                 address: {
-                    street: address.street,
-                    suite: address.suite,
-                    city: address.city,
+                    street: street,
+                    suite: suite,
+                    city: city,
                 },
-                phone: phone,
-                website: website,
+                phone: phoneNumber,
+                website: webSite
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -96,8 +95,17 @@ const User = ({ user }: Props) => {
             .then((response) => response.json())
             .then((updatedData) => {
                 console.log('Updated data:', updatedData);
-                dispatch(listUsers(updatedData));
-                // setNameOfTheUser(updatedData.name);
+                // dispatch(listUsers(updatedData));
+                dispatch(listUser(updatedData));
+
+                const updatedUsers = users.map(user => {
+                    if (user.id === updatedData.id) {
+                        return updatedData;
+                    }
+                    return user;
+                });
+                dispatch(listUsers(updatedUsers));
+                console.log('updatedUsers', updatedUsers);
             });
     }
 
