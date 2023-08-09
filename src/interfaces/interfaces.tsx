@@ -21,7 +21,7 @@ export interface Props {
 }
 
 export interface IPosts {
-    id: string;
+    id: number;
     title: string;
     body: string;
 }

@@ -10,7 +10,6 @@ const initialState = {
     error: null,
     users: [],
     posts: [],
-    // selectedFederation: { id: '', agencyName: '', status: '' },
 };
 
 const usersSlice = createSlice({

@@ -3,10 +3,11 @@ import "./User.css"
 import Posts from "../Posts/Posts";
 import { IPosts, Props } from "../../interfaces/interfaces";
 import { dispatch, useSelector } from "../../store";
-import { listUsers } from "../../store/reducers/users";
+import { listPosts, listUsers } from "../../store/reducers/users";
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
+
     const [posts, setPosts] = useState<IPosts[]>([]);
     const [showPosts, setShowPosts] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -33,6 +34,7 @@ const User = ({ user }: Props) => {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
             const data = await response.json();
             setPosts(data);
+            dispatch(listPosts(data));
         } catch (error) {
             console.error('Error fetching user posts:', error);
         }
@@ -95,11 +97,11 @@ const User = ({ user }: Props) => {
             .then((updatedData) => {
                 console.log('Updated data:', updatedData);
                 dispatch(listUsers(updatedData));
-                // dispatch(updateUser(updatedData)); // Dispatch the action only for the updated user
                 // setNameOfTheUser(updatedData.name);
             });
     }
 
+    console.log('nameOfTheUser', nameOfTheUser);
     return (
         <div className="card">
             <button className="collapsible-button" onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -143,6 +145,7 @@ const User = ({ user }: Props) => {
             {posts && posts.map(post => (
                 <Posts key={post.id} post={post} />
             ))}
+            {/* {posts && <Posts />} */}
         </div>
     );
 };
