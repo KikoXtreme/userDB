@@ -40,7 +40,6 @@ const User = ({ user }: Props) => {
     }
 
     const userPosts = useSelector((state) => state.users.posts) as IPosts[];
-    console.log('postsss', userPosts);
 
     // const addPropertyToUser = () => {
     //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
@@ -102,8 +101,6 @@ const User = ({ user }: Props) => {
                 },
             });
             const updatedData = await response.json();
-
-            console.log('Updated data:', updatedData);
             dispatch(listUser(updatedData));
 
             const updatedUsers = users.map(user => {
@@ -113,7 +110,6 @@ const User = ({ user }: Props) => {
                 return user;
             });
             dispatch(listUsers(updatedUsers));
-            console.log('updatedUsers', updatedUsers);
         } catch (error) {
             console.error('Error adding new property to user', error);
             toast.error('An error occurred while adding new property to user.');
@@ -186,8 +182,6 @@ const User = ({ user }: Props) => {
                 },
             });
             const updatedData = await response.json();
-
-            console.log('Updated data:', updatedData);
             dispatch(listUser(updatedData));
 
             const updatedUsers = users.map(user => {
@@ -197,7 +191,6 @@ const User = ({ user }: Props) => {
                 return user;
             });
             dispatch(listUsers(updatedUsers));
-            console.log('updatedUsers', updatedUsers);
         } catch (error) {
             console.error('Error submiting new data:', error);
             toast.error('An error occurred while submiting new data.');
