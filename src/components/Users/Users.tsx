@@ -1,24 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import User from '../User/User';
 import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
 import { UserInterface } from '../../interfaces/interfaces';
+import '../css/spinner.css'; // Import the CSS file for the spinner
 
 const Users = () => {
-    // const [users, setUsers] = useState<UserInterface[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // fetch('https://jsonplaceholder.typicode.com/users')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setUsers(data);
-        //     });
         const fetchUsers = async () => {
             try {
                 const response = await fetch('https://jsonplaceholder.typicode.com/users');
                 const data = await response.json();
-                // setUsers(data);
                 dispatch(listUsers(data));
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
@@ -31,9 +27,16 @@ const Users = () => {
 
     return (
         <div>
-            {users.map(user => (
-                <User key={user.id} user={user} />
-            ))}
+            {isLoading ? (
+                <>
+                    <div className="spinner"></div>
+                    <div>Loading...</div>
+                </>
+            ) : (
+                users.map(user => (
+                    <User key={user.id} user={user} />
+                ))
+            )}
         </div>
     );
 };
