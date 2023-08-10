@@ -1,6 +1,7 @@
 import { useState } from "react";
-import "./User.css"
 import Posts from "../Posts/Posts";
+import "./User.css"
+import '../css/spinner.css';
 import { IPosts, Props, UserInterface } from "../../interfaces/interfaces";
 import { dispatch, useSelector } from "../../store";
 import { listPosts, listUser, listUsers } from "../../store/reducers/users";
@@ -11,6 +12,7 @@ const User = ({ user }: Props) => {
     const [posts, setPosts] = useState<IPosts[]>([]);
     const [showPosts, setShowPosts] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [nameOfTheUser, setNameOfTheUser] = useState(name);
     const [phoneNumber, setPhoneNumber] = useState(phone);
@@ -21,12 +23,8 @@ const User = ({ user }: Props) => {
     const [suite, setSuite] = useState(address.suite);
     const [city, setCity] = useState(address.city);
 
-    // fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setPosts(data);
-    //     });
     const getUsersPosts = async (id: number) => {
+        setIsLoading(true);
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
             const data = await response.json();
@@ -35,10 +33,10 @@ const User = ({ user }: Props) => {
         } catch (error) {
             console.error('Error fetching user posts:', error);
         }
+        setIsLoading(false);
     }
 
     const userPosts = useSelector((state) => state.users.posts) as IPosts[];
-    // const { posts } = useSelector((state) => state.users) as { posts: IPosts[] };;
     console.log('postsss', userPosts);
 
     // const addPropertyToUser = () => {
@@ -241,10 +239,16 @@ const User = ({ user }: Props) => {
             }}>
                 {showPosts ? "Hide user's posts" : "Get user's posts"}
             </button>
-            {posts && posts.map(post => (
-                <Posts key={post.id} post={post} />
-            ))}
-            {/* {posts && <Posts />} */}
+            {isLoading ? (
+                <>
+                    <div className="spinner"></div>
+                    <div>Loading...</div>
+                </>
+            ) : (
+                posts && posts.map(post => (
+                    <Posts key={post.id} post={post} />
+                ))
+            )}
         </div>
     );
 };

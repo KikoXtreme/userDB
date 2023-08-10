@@ -3,7 +3,7 @@ import User from '../User/User';
 import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
 import { UserInterface } from '../../interfaces/interfaces';
-import '../css/spinner.css'; // Import the CSS file for the spinner
+import '../css/spinner.css';
 
 const Users = () => {
     const [isLoading, setIsLoading] = useState(true);
