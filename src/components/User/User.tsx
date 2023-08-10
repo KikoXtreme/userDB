@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Posts from "../Posts/Posts";
-import "./User.css"
-import '../css/spinner.css';
+import "../../css/userCard.css";
+import '../../css/spinner.css';
 import { IPosts, Props, UserInterface } from "../../interfaces/interfaces";
 import { dispatch, useSelector } from "../../store";
 import { listPosts, listUser, listUsers } from "../../store/reducers/users";
