@@ -10,10 +10,7 @@ export interface UserInterface {
     };
     phone: string;
     website: string;
-    posts: {
-        title: string,
-        body: string,
-    },
+    posts: [],
 }
 
 export interface Props {

@@ -37,76 +37,168 @@ const User = ({ user }: Props) => {
         }
     }
 
-    const togglePosts = () => {
-        setShowPosts(prevShowPosts => !prevShowPosts);
-    };
+    const userPosts = useSelector((state) => state.users.posts) as IPosts[];
+    // const { posts } = useSelector((state) => state.users) as { posts: IPosts[] };;
+    console.log('postsss', userPosts);
 
     // const addPropertyToUser = () => {
     //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
     //         method: 'PUT',
     //         body: JSON.stringify({
     //             id: id,
-    //             name: name,
-    //             username: username,
-    //             email: email,
+    //             name: nameOfTheUser,
+    //             username: userName,
+    //             email: userEmail,
     //             address: {
-    //                 street: address.street,
-    //                 suite: address.suite,
-    //                 city: address.city,
+    //                 street: street,
+    //                 suite: suite,
+    //                 city: city,
     //             },
-    //             phone: phone,
-    //             website: website,
-    //             posts: {
-    //                 title: 'foooooo',
-    //                 body: 'barrrrr',
-    //             },
+    //             phone: phoneNumber,
+    //             website: webSite,
+    //             posts: userPosts,
     //         }),
     //         headers: {
     //             'Content-type': 'application/json; charset=UTF-8',
     //         },
     //     })
     //         .then((response) => response.json())
-    //         .then((json) => console.log(json));
+    //         .then((updatedData) => {
+    //             console.log('Updated data:', updatedData);
+    //             // dispatch(listUsers(updatedData));
+    //             dispatch(listUser(updatedData));
+
+    //             const updatedUsers = users.map(user => {
+    //                 if (user.id === updatedData.id) {
+    //                     return updatedData;
+    //                 }
+    //                 return user;
+    //             });
+    //             dispatch(listUsers(updatedUsers));
+    //             console.log('updatedUsers', updatedUsers);
+    //         });
     // }
+    const addPropertyToUser = async () => {
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    id: id,
+                    name: nameOfTheUser,
+                    username: userName,
+                    email: userEmail,
+                    address: {
+                        street: street,
+                        suite: suite,
+                        city: city,
+                    },
+                    phone: phoneNumber,
+                    website: webSite,
+                    posts: userPosts,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+            const updatedData = await response.json();
+
+            console.log('Updated data:', updatedData);
+            dispatch(listUser(updatedData));
+
+            const updatedUsers = users.map(user => {
+                if (user.id === updatedData.id) {
+                    return updatedData;
+                }
+                return user;
+            });
+            dispatch(listUsers(updatedUsers));
+            console.log('updatedUsers', updatedUsers);
+        } catch (error) {
+            console.error('Error fetching user posts:', error);
+        }
+    }
+
+    const togglePosts = () => {
+        setShowPosts(prevShowPosts => !prevShowPosts);
+    };
 
     const { users } = useSelector((state) => state.users) as { users: UserInterface[] };
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                id: id,
-                name: nameOfTheUser,
-                username: userName,
-                email: userEmail,
-                address: {
-                    street: street,
-                    suite: suite,
-                    city: city,
-                },
-                phone: phoneNumber,
-                website: webSite
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((updatedData) => {
-                console.log('Updated data:', updatedData);
-                // dispatch(listUsers(updatedData));
-                dispatch(listUser(updatedData));
+    // const handleSubmit = (e: any) => {
+    //     e.preventDefault();
+    //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+    //         method: 'PUT',
+    //         body: JSON.stringify({
+    //             id: id,
+    //             name: nameOfTheUser,
+    //             username: userName,
+    //             email: userEmail,
+    //             address: {
+    //                 street: street,
+    //                 suite: suite,
+    //                 city: city,
+    //             },
+    //             phone: phoneNumber,
+    //             website: webSite
+    //         }),
+    //         headers: {
+    //             'Content-type': 'application/json; charset=UTF-8',
+    //         },
+    //     })
+    //         .then((response) => response.json())
+    //         .then((updatedData) => {
+    //             console.log('Updated data:', updatedData);
+    //             // dispatch(listUsers(updatedData));
+    //             dispatch(listUser(updatedData));
 
-                const updatedUsers = users.map(user => {
-                    if (user.id === updatedData.id) {
-                        return updatedData;
-                    }
-                    return user;
-                });
-                dispatch(listUsers(updatedUsers));
-                console.log('updatedUsers', updatedUsers);
+    //             const updatedUsers = users.map(user => {
+    //                 if (user.id === updatedData.id) {
+    //                     return updatedData;
+    //                 }
+    //                 return user;
+    //             });
+    //             dispatch(listUsers(updatedUsers));
+    //             console.log('updatedUsers', updatedUsers);
+    //         });
+    // }
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    id: id,
+                    name: nameOfTheUser,
+                    username: userName,
+                    email: userEmail,
+                    address: {
+                        street: street,
+                        suite: suite,
+                        city: city,
+                    },
+                    phone: phoneNumber,
+                    website: webSite
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
             });
+            const updatedData = await response.json();
+
+            console.log('Updated data:', updatedData);
+            dispatch(listUser(updatedData));
+
+            const updatedUsers = users.map(user => {
+                if (user.id === updatedData.id) {
+                    return updatedData;
+                }
+                return user;
+            });
+            dispatch(listUsers(updatedUsers));
+            console.log('updatedUsers', updatedUsers);
+        } catch (error) {
+            console.error('Error submiting new data:', error);
+        }
     }
 
     return (
@@ -145,7 +237,7 @@ const User = ({ user }: Props) => {
             <button className="button" onClick={() => {
                 showPosts ? setPosts([]) : getUsersPosts(id)
                 togglePosts();
-                // addPropertyToUser();
+                addPropertyToUser();
             }}>
                 {showPosts ? "Hide user's posts" : "Get user's posts"}
             </button>
