@@ -5,6 +5,8 @@ import '../../css/spinner.css';
 import { IPosts, Props, UserInterface } from "../../interfaces/interfaces";
 import { dispatch, useSelector } from "../../store";
 import { listPosts, listUser, listUsers } from "../../store/reducers/users";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const User = ({ user }: Props) => {
     const { id, name, username, email, address, phone, website } = user;
@@ -31,7 +33,8 @@ const User = ({ user }: Props) => {
             setPosts(data);
             dispatch(listPosts(data));
         } catch (error) {
-            console.error('Error fetching user posts:', error);
+            console.error('Error fetching user\'s posts:', error);
+            toast.error('An error occurred while fetching user\'s posts.');
         }
         setIsLoading(false);
     }
@@ -112,7 +115,8 @@ const User = ({ user }: Props) => {
             dispatch(listUsers(updatedUsers));
             console.log('updatedUsers', updatedUsers);
         } catch (error) {
-            console.error('Error fetching user posts:', error);
+            console.error('Error adding new property to user', error);
+            toast.error('An error occurred while adding new property to user.');
         }
     }
 
@@ -196,6 +200,7 @@ const User = ({ user }: Props) => {
             console.log('updatedUsers', updatedUsers);
         } catch (error) {
             console.error('Error submiting new data:', error);
+            toast.error('An error occurred while submiting new data.');
         }
     }
 

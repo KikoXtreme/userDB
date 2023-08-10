@@ -4,6 +4,8 @@ import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
 import { UserInterface } from '../../interfaces/interfaces';
 import '../../css/spinner.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Users = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +19,7 @@ const Users = () => {
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
+                toast.error('An error occurred while fetching users.');
             }
         };
 
