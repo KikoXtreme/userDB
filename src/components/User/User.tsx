@@ -33,6 +33,7 @@ const User = ({ user }: Props) => {
             const data = response.data;
             setPosts(data);
             dispatch(listPosts(data));
+            toast.success('User\'s posts displayed!');
         } catch (error) {
             console.error('Error fetching user\'s posts:', error);
             toast.error('An error occurred while fetching user\'s posts.');
@@ -115,6 +116,7 @@ const User = ({ user }: Props) => {
                 return user;
             });
             dispatch(listUsers(updatedUsers));
+            toast.success('User successfully updated!');
         } catch (error) {
             console.error('Error submiting new data:', error);
             toast.error('An error occurred while submiting new data.');
