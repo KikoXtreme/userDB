@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 import Posts from "../Posts/Posts";
 import "../../css/userCard.css";
 import '../../css/spinner.css';
@@ -28,79 +29,41 @@ const User = ({ user }: Props) => {
     const getUsersPosts = async (id: number) => {
         setIsLoading(true);
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
-            const data = await response.json();
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
+            const data = response.data;
             setPosts(data);
             dispatch(listPosts(data));
         } catch (error) {
             console.error('Error fetching user\'s posts:', error);
             toast.error('An error occurred while fetching user\'s posts.');
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     }
 
     const userPosts = useSelector((state) => state.users.posts) as IPosts[];
 
-    // const addPropertyToUser = () => {
-    //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({
-    //             id: id,
-    //             name: nameOfTheUser,
-    //             username: userName,
-    //             email: userEmail,
-    //             address: {
-    //                 street: street,
-    //                 suite: suite,
-    //                 city: city,
-    //             },
-    //             phone: phoneNumber,
-    //             website: webSite,
-    //             posts: userPosts,
-    //         }),
-    //         headers: {
-    //             'Content-type': 'application/json; charset=UTF-8',
-    //         },
-    //     })
-    //         .then((response) => response.json())
-    //         .then((updatedData) => {
-    //             console.log('Updated data:', updatedData);
-    //             // dispatch(listUsers(updatedData));
-    //             dispatch(listUser(updatedData));
-
-    //             const updatedUsers = users.map(user => {
-    //                 if (user.id === updatedData.id) {
-    //                     return updatedData;
-    //                 }
-    //                 return user;
-    //             });
-    //             dispatch(listUsers(updatedUsers));
-    //             console.log('updatedUsers', updatedUsers);
-    //         });
-    // }
     const addPropertyToUser = async () => {
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    id: id,
-                    name: nameOfTheUser,
-                    username: userName,
-                    email: userEmail,
-                    address: {
-                        street: street,
-                        suite: suite,
-                        city: city,
-                    },
-                    phone: phoneNumber,
-                    website: webSite,
-                    posts: userPosts,
-                }),
+            const response = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                id: id,
+                name: nameOfTheUser,
+                username: userName,
+                email: userEmail,
+                address: {
+                    street: street,
+                    suite: suite,
+                    city: city,
+                },
+                phone: phoneNumber,
+                website: webSite,
+                posts: userPosts,
+            }, {
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
             });
-            const updatedData = await response.json();
+            const updatedData = response.data;
             dispatch(listUser(updatedData));
 
             const updatedUsers = users.map(user => {
@@ -122,66 +85,27 @@ const User = ({ user }: Props) => {
 
     const { users } = useSelector((state) => state.users) as { users: UserInterface[] };
 
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault();
-    //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({
-    //             id: id,
-    //             name: nameOfTheUser,
-    //             username: userName,
-    //             email: userEmail,
-    //             address: {
-    //                 street: street,
-    //                 suite: suite,
-    //                 city: city,
-    //             },
-    //             phone: phoneNumber,
-    //             website: webSite
-    //         }),
-    //         headers: {
-    //             'Content-type': 'application/json; charset=UTF-8',
-    //         },
-    //     })
-    //         .then((response) => response.json())
-    //         .then((updatedData) => {
-    //             console.log('Updated data:', updatedData);
-    //             // dispatch(listUsers(updatedData));
-    //             dispatch(listUser(updatedData));
-
-    //             const updatedUsers = users.map(user => {
-    //                 if (user.id === updatedData.id) {
-    //                     return updatedData;
-    //                 }
-    //                 return user;
-    //             });
-    //             dispatch(listUsers(updatedUsers));
-    //             console.log('updatedUsers', updatedUsers);
-    //         });
-    // }
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    id: id,
-                    name: nameOfTheUser,
-                    username: userName,
-                    email: userEmail,
-                    address: {
-                        street: street,
-                        suite: suite,
-                        city: city,
-                    },
-                    phone: phoneNumber,
-                    website: webSite
-                }),
+            const response = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                id: id,
+                name: nameOfTheUser,
+                username: userName,
+                email: userEmail,
+                address: {
+                    street: street,
+                    suite: suite,
+                    city: city,
+                },
+                phone: phoneNumber,
+                website: webSite
+            }, {
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
             });
-            const updatedData = await response.json();
+            const updatedData = response.data;
             dispatch(listUser(updatedData));
 
             const updatedUsers = users.map(user => {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import User from '../User/User';
 import { dispatch, useSelector } from '../../store';
 import { listUsers } from '../../store/reducers/users';
@@ -13,8 +14,8 @@ const Users = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/users');
-                const data = await response.json();
+                const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+                const data = response.data;
                 dispatch(listUsers(data));
                 setIsLoading(false);
             } catch (error) {
