@@ -1,11 +1,7 @@
-// redux
 import { createSlice } from '@reduxjs/toolkit';
-
-// project imports
 import { dispatch } from '../index';
 import { PostProps, UserInterface } from '../../interfaces/interfaces';
 
-// initial state
 const initialState = {
     error: null,
     users: [],

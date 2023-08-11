@@ -2,7 +2,6 @@ import users from './reducers/users';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch as useAppDispatch, useSelector as useAppSelector, TypedUseSelectorHook } from 'react-redux';
 
-// const ignoredPaths = ['users'];
 const store = configureStore({
   reducer: {
     users: users,
