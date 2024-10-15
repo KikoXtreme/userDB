@@ -1,4 +1,4 @@
-# `Live Demo Link:` [User DB](https://kikoxtreme.github.io/userdb/)
+# `Live Demo Link:` [User DB](https://kikoxtreme.github.io/userDB/)
 
 # Getting Started with Create React App
 
