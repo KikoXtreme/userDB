@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/KikoXtreme/userDB/static/css/main.1a258ce7.css",
+    "main.js": "/KikoXtreme/userDB/static/js/main.832b38dd.js",
+    "static/js/787.d7561884.chunk.js": "/KikoXtreme/userDB/static/js/787.d7561884.chunk.js",
+    "index.html": "/KikoXtreme/userDB/index.html",
+    "main.1a258ce7.css.map": "/KikoXtreme/userDB/static/css/main.1a258ce7.css.map",
+    "main.832b38dd.js.map": "/KikoXtreme/userDB/static/js/main.832b38dd.js.map",
+    "787.d7561884.chunk.js.map": "/KikoXtreme/userDB/static/js/787.d7561884.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a258ce7.css",
+    "static/js/main.832b38dd.js"
+  ]
+}
