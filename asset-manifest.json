@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/KikoXtreme/userDB/static/css/main.1a258ce7.css",
-    "main.js": "/KikoXtreme/userDB/static/js/main.832b38dd.js",
-    "static/js/787.d7561884.chunk.js": "/KikoXtreme/userDB/static/js/787.d7561884.chunk.js",
-    "index.html": "/KikoXtreme/userDB/index.html",
-    "main.1a258ce7.css.map": "/KikoXtreme/userDB/static/css/main.1a258ce7.css.map",
-    "main.832b38dd.js.map": "/KikoXtreme/userDB/static/js/main.832b38dd.js.map",
-    "787.d7561884.chunk.js.map": "/KikoXtreme/userDB/static/js/787.d7561884.chunk.js.map"
+    "main.css": "/userDB/static/css/main.1a258ce7.css",
+    "main.js": "/userDB/static/js/main.a7a78d0b.js",
+    "static/js/787.d7561884.chunk.js": "/userDB/static/js/787.d7561884.chunk.js",
+    "index.html": "/userDB/index.html",
+    "main.1a258ce7.css.map": "/userDB/static/css/main.1a258ce7.css.map",
+    "main.a7a78d0b.js.map": "/userDB/static/js/main.a7a78d0b.js.map",
+    "787.d7561884.chunk.js.map": "/userDB/static/js/787.d7561884.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1a258ce7.css",
-    "static/js/main.832b38dd.js"
+    "static/js/main.a7a78d0b.js"
   ]
 }
