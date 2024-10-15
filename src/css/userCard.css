@@ -38,6 +38,8 @@
 
 .button:hover {
     background-color: #0056b3;
+    transform: 0.1s all linear;
+    transform: scale(1.03);
 }
 
 .submit-button {
@@ -52,6 +54,8 @@
 
 .submit-button:hover {
     background-color: rgb(194, 194, 194);
+    transform: 0.1s all linear;
+    transform: scale(1.03);
 }
 
 
@@ -68,6 +72,8 @@
 
 .collapsible-button:hover {
     background-color: #138f00;
+    transform: 0.1s all linear;
+    transform: scale(1.03);
 }
 
 .postcard {
